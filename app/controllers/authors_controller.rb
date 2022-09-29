@@ -3,14 +3,13 @@ class AuthorsController < ApplicationController
 
   def index
     authors = Author.all 
-    render json: authors
+    render json: authors, include: ['posts', 'posts.tags', 'profile']
   end
 
   def show
     author = Author.find(params[:id])
-    render json: author
+    render json: author, include: ['posts', 'posts.tags', 'profile']
   end
-
   private
 
   def render_not_found_response
